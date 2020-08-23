@@ -46,7 +46,6 @@ return string
 const generate_list= (options,className)=>{
     return (`<ul ${className? "class='"+className+"'":''}>
                 ${generate_list_elements(options)}
-                
             </ul>
             `)
 }
@@ -65,9 +64,23 @@ const generate_options_of_the_list = (array)=>{
         return options;
 }
 
-const generate_form = (size,className)=>{
+
+const generate_text_inputs = (inputs_exemple,className)=>{
+    let inputs = '';
+    inputs_exemple.map(input=>{
+        inputs = inputs.concat(`<label>${input.label}</label><input placeholder='${input.placeholder}' type='${input.type}' />`)
+
+    })
+        
+
+        return inputs;
+}
+
+
+const generate_form = (inputs_exemple,className)=>{
+
     return (`<form>
-                ${generate_text_inputs(size,className)}
+                ${generate_text_inputs(inputs_exemple,className)}
             </form>`)
 }
 
@@ -88,16 +101,25 @@ return to_render
                     ************************************************/
 
 
+
+// to generate inputs from teh form
+const inputs_exemple = [
+    {label:'first name',type:'text',placeholder:'first name'},{label:'last name',type:'text',placeholder:'last name'}
+]
+
  const p = generate_paragraphe('try','try');
  const dropdown = generate_list(['hello','ALS','111']);
  const img = generate_image('https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRtuJsCJezdhm0DRmP3cDTVUDZdrKn_uzS5IrMQeT-3VlK52LJT',100,100);
 const headline = generate_headline(3,'test','hello');
-const select = generate_options_list(['op1','op2','op3'])
+const select = generate_options_list(['op1','op2','op3']);
+const form = generate_form(inputs_exemple,'test_input');
 const div_1 = generate_content_display([p,dropdown],'div_1_style');
 const div_2 = generate_content_display([img,headline],'div_2_style');
-const div_3 = generate_content_display([p,select],'div_3_style')
-
+const div_3 = generate_content_display([form,select],'div_3_style')
  const dipslay = generate_default_container_ALS('mah_test','style','js',[div_1,div_2,div_3])
+
+
+
  fs.writeFile('./myPage.html',dipslay,(error) => { 
 
     console.log('error',error)
