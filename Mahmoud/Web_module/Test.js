@@ -51,7 +51,7 @@ const generate_list= (options,className)=>{
 }
 
 const generate_options_list = (array)=>{
-        return (`<select>
+        return (`<select id='e'>
                     ${generate_options_of_the_list(array)}
                 </select>`)
 }
@@ -96,6 +96,8 @@ return to_render
 
 
 
+
+
                     /************************************************
                     *                   exemples                    *
                     ************************************************/
@@ -116,7 +118,7 @@ const form = generate_form(inputs_exemple,'test_input');
 const div_1 = generate_content_display([p,dropdown],'div_1_style');
 const div_2 = generate_content_display([img,headline],'div_2_style');
 const div_3 = generate_content_display([form,select],'div_3_style')
- const dipslay = generate_default_container_ALS('mah_test','style','js',[div_1,div_2,div_3])
+ const dipslay = generate_default_container_ALS('mah_test','style','./Events.js',[div_1,div_2,div_3])
 
 
 
